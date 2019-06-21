@@ -24,15 +24,14 @@ public class Coordinates {
 	}
 
 	public	int	getLatitude() {
-		return this.latitude;
+		return latitude;
 	}
 
 	public	int	getLongitude() {
-		return this.longitude;
+		return longitude;
 	}
 
 	public	int	getHeight() {
-		return this.height;
+		return height;
 	}
-
 }
