@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:51:47 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/06/20 16:21:10 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/06/21 15:50:51 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,17 @@ public class Coordinates {
 
 	public	int	getHeight() {
 		return height;
+	}
+
+	public	void setHeight(int height) {
+		this.height = height;
+	}
+
+	public	void setLatitue(int latitude) {
+		this.latitude = longitude;
+	}
+
+	public	void setLongitude(int longitude) {
+		this.longitude = longitude;
 	}
 }
