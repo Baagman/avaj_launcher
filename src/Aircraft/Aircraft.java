@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-import coordinates.*;
+package Aircraft;
+
+import Coordinates.Coordinates;
 
 public class 	Aircraft {
 	protected 	Coordinates coordinates;
@@ -18,10 +20,17 @@ public class 	Aircraft {
 	protected 	long		id;
 	private		long		idcounter;
 
-	protected	Aircraft(String name, Coordinates coordinates) {
+	protected  Aircraft(String name, Coordinates coordinates) {
 		this.name = name;
 		if (coordinates != null) {
 			this.coordinates = coordinates;
 		}
+	}
+
+	public	long	getIdCounter() {
+		return idcounter;
+	}
+	public	Coordinates	getCoordinates() {
+		return coordinates;
 	}
 }
