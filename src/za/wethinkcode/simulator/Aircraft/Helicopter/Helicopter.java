@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.java                                          :+:      :+:    :+:   */
+/*   Helicopter.java                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/20 12:17:55 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/06/21 13:17:41 by tbaagman         ###   ########.fr       */
+/*   Created: 2019/06/20 16:27:44 by tbaagman          #+#    #+#             */
+/*   Updated: 2019/06/21 15:13:03 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-import Coordinates.Coordinates;
+package Aircraft.Helicopter;
 import Aircraft.Aircraft;
-import Aircraft.Helicopter.Helicopter;
-import Aircraft.JetPlane.JetPlane;
+import Coordinates.Coordinates;
 
-class Simulator {
-	public static void main(String[] args) {
-		Coordinates coordinates = new Coordinates(10, 10, 10);
-		Aircraft helicopter = new Helicopter("Helicopter", coordinates);
-		Aircraft jetplane = new JetPlane("JetPlane", coordinates);
-	}
+public class Helicopter extends Aircraft {
+
+    public Helicopter(String name, Coordinates coordinates) {
+        super(name, coordinates);
+        System.out.println(name + " has been created");
+    }
 }
