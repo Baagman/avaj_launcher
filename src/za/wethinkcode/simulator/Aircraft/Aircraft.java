@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 15:00:07 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/06/21 16:00:00 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/06/21 16:07:27 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,5 @@ public class 	Aircraft {
 
 	public	long	getId() {
 		return id;
-	}
-
-	public	void	setCoordinates(Coordinates coordinates) {
-		if (coordinates != null) {
-			this.coordinates = coordinates;
-		}
 	}
 }
