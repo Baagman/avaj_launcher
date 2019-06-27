@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Aircraft.java                                      :+:      :+:    :+:   */
+/*   Craft.java                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 15:00:07 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/06/21 16:07:27 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:32:15 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-package Aircraft;
+package za.wethinkcode.Aircrafts;
 
-import Coordinates.Coordinates;
+import za.wethinkcode.Coordinates.*;
 
-public class 	Aircraft {
-	protected 	Coordinates coordinates;
-	protected 	String		name;
-	protected 	long		id;
-	private		long		idcounter;
+abstract public class 	Craft {
+	protected Coordinates coordinates;
+	protected String name;
+	protected long id;
+	private long idcounter;
 
-	protected  Aircraft(String name, Coordinates coordinates) {
+	protected Craft(String name, Coordinates coordinates) {
 		this.name = name;
 		if (coordinates != null) {
 			this.coordinates = coordinates;
@@ -28,17 +28,17 @@ public class 	Aircraft {
 	}
 
 	public	long	getIdCounter() {
-		return idcounter;
+		return this.idcounter;
 	}
 	public	Coordinates	getCoordinates() {
-		return coordinates;
+		return this.coordinates;
 	}
 
 	public	String	getName() {
-		return name;
+		return this.name;
 	}
 
 	public	long	getId() {
-		return id;
+		return this.id;
 	}
 }

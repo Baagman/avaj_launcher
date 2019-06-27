@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Helicopter.java                                    :+:      :+:    :+:   */
+/*   Tower.java                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/20 16:27:44 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/06/21 15:13:03 by tbaagman         ###   ########.fr       */
+/*   Created: 2019/06/27 12:55:23 by tbaagman          #+#    #+#             */
+/*   Updated: 2019/06/27 14:26:09 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-package Aircraft.Helicopter;
-import Aircraft.Aircraft;
-import Coordinates.Coordinates;
+package za.wethinkcode.Tower;
 
-public class Helicopter extends Aircraft {
-
-    public Helicopter(String name, Coordinates coordinates) {
-        super(name, coordinates);
-        System.out.println(name + " has been created");
-    }
+public class Tower {
+    
 }

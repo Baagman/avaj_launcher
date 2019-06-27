@@ -6,22 +6,21 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 12:17:55 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/06/21 16:05:29 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:20:26 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-import Coordinates.Coordinates;
-import Aircraft.Aircraft;
-import Aircraft.Helicopter.Helicopter;
-import Aircraft.JetPlane.JetPlane;
+package za.wethinkcode.Simulator;
+import za.wethinkcode.Coordinates.*;
+import za.wethinkcode.Aircrafts.*;
+
 
 public class Simulator {
 	public static void main(String[] args) {
-		Coordinates coordinates = new Coordinates(10, 10, 10);
-		Aircraft helicopter = new Helicopter("Helicopter", coordinates);
-		helicopter.getCoordinates().setHeight(100);
-		System.out.println(helicopter.getCoordinates().getHeight());
-		coordinates.setHeight(-1);
+		JetPlane helicopter = new JetPlane("Helicopter", new Coordinates(1, 2, 34));
+		helicopter.updateConditions();
+		System.out.println(helicopter.getCoordinates().getLongitude());
+		System.out.println(helicopter.getCoordinates().getLatitude());
 		System.out.println(helicopter.getCoordinates().getHeight());
 	}
 }
