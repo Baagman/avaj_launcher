@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:53:52 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/06/28 13:52:34 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/03 15:01:40 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ public class JetPlane extends Aircraft implements Flyable {
 		}
 	}
 
-	public void registerTower() {
-
+	public void registerTower(WeatherTower weatherTower) {
+		this.weatherTower = weatherTower;
+		this.weatherTower.register(this);
 	}
 }
