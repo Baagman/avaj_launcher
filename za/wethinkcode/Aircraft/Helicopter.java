@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:27:44 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/06/28 13:59:04 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/03 14:42:51 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ public class Helicopter extends Aircraft implements Flyable {
 		}
 	}
 
-	public void registerTower() {
+	public void registerTower(WeatherTower weatherTower) {
 		
 	}
 }
