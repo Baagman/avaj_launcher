@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 13:32:51 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/03 13:45:46 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/04 09:27:56 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ public class AircraftFactory {
 		} else if (type.equalsIgnoreCase("Baloon")) {
 			return new Baloon(name, coordinates);
 		}
-		return null;   
+		return null;
 	}
 }

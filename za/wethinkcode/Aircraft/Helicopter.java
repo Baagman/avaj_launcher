@@ -6,45 +6,60 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:27:44 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/03 14:42:51 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/04 14:41:21 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 package za.wethinkcode.Aircraft;
 
+import java.util.HashMap;
 import za.wethinkcode.Coordinates.Coordinates;
+import za.wethinkcode.Simulator.WriteAndRead;
 import za.wethinkcode.Tower.WeatherTower;
 
 public class Helicopter extends Aircraft implements Flyable {
 
 	private WeatherTower weatherTower = new WeatherTower();
+	private WriteAndRead writeAndRead = new WriteAndRead();
+	
 	public Helicopter(String name, Coordinates coordinates) {
 		super(name, coordinates);
 	}
 
 	public void updateConditions() {
 		String currentWeather = weatherTower.getWeather(getCoordinates());
+		HashMap <String, String> message = new HashMap<String, String>();
 
 		switch (currentWeather) {
 			case "SUN":
 				getCoordinates().setHeight(getCoordinates().getHeight() + 2);
 				getCoordinates().setLongitude(getCoordinates().getLongitude() + 10);
+				message.put(currentWeather, "This is hot.");
 				break;
 			case "RAIN":
 				getCoordinates().setLongitude(getCoordinates().getLongitude() + 5);
+				message.put(currentWeather, "Let's enjoy the good weather and take some pics.");
 				break;
 			case "FOG":
 				getCoordinates().setLongitude(getCoordinates().getLongitude() + 1);
+				message.put(currentWeather, "Let's enjoy the good weather and take some pics.");
 				break;
 			case "SNOW":
 				getCoordinates().setHeight(getCoordinates().getHeight() - 12);
+				message.put(currentWeather, "My rotor is going to freeze.");
 				break;
-			default:
-				System.out.println("Error: Unknown Weather");
+		}
+		if (getCoordinates().getHeight() == 0) {
+			writeAndRead.WriteMessageToFile("Helicopter#" + getName() + "(" + getId() + ") landing.");
+			weatherTower.unregister(this);
+		} else if (message.get(currentWeather) != null) {
+			writeAndRead.WriteMessageToFile("Helicopter#" + getName() + "(" + getId() + "): " + message.get(currentWeather));	
 		}
 	}
 
 	public void registerTower(WeatherTower weatherTower) {
-		
+		this.weatherTower = weatherTower;
+		this.weatherTower.register(this);
+		writeAndRead.WriteMessageToFile("Tower says: Helicopter#" + getName() + "(" + getId() + ") registered to weather tower.");
 	}
 }
