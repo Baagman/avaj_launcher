@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:27:44 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/04 14:41:21 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/05 14:45:45 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,35 @@ public class Helicopter extends Aircraft implements Flyable {
 				break;
 			case "RAIN":
 				getCoordinates().setLongitude(getCoordinates().getLongitude() + 5);
-				message.put(currentWeather, "Let's enjoy the good weather and take some pics.");
+				message.put(currentWeather, "Ehh time to turn on the wipers.");
 				break;
 			case "FOG":
 				getCoordinates().setLongitude(getCoordinates().getLongitude() + 1);
-				message.put(currentWeather, "Let's enjoy the good weather and take some pics.");
+				message.put(currentWeather, "Thank God for the rader.");
 				break;
 			case "SNOW":
 				getCoordinates().setHeight(getCoordinates().getHeight() - 12);
-				message.put(currentWeather, "My rotor is going to freeze.");
+				message.put(currentWeather, "My rotor is going to freeze!");
 				break;
+			default:
+				System.out.println("Uhm we seem to be having some weather problem");
+				return ;
 		}
 		if (getCoordinates().getHeight() == 0) {
 			writeAndRead.WriteMessageToFile("Helicopter#" + getName() + "(" + getId() + ") landing.");
-			weatherTower.unregister(this);
-		} else if (message.get(currentWeather) != null) {
-			writeAndRead.WriteMessageToFile("Helicopter#" + getName() + "(" + getId() + "): " + message.get(currentWeather));	
+			writeAndRead.WriteMessageToFile("Tower says: Helicopter#" + getName() + "(" + getId() + ") unregistered from weather tower.");
+			this.weatherTower.unregister(this);
+		} else if ((message.get(currentWeather) != null) && (!message.get(currentWeather).isEmpty())) {
+			writeAndRead.WriteMessageToFile("Helicopter#" + getName() + "(" + getId() + "): " + message.get(currentWeather));
 		}
+		return ;
 	}
 
 	public void registerTower(WeatherTower weatherTower) {
-		this.weatherTower = weatherTower;
-		this.weatherTower.register(this);
-		writeAndRead.WriteMessageToFile("Tower says: Helicopter#" + getName() + "(" + getId() + ") registered to weather tower.");
+		if (weatherTower != null) {
+			this.weatherTower = weatherTower;
+			this.weatherTower.register(this);
+			writeAndRead.WriteMessageToFile("Tower says: Helicopter#" + getName() + "(" + getId() + ") registered to weather tower.");
+		}
 	}
 }

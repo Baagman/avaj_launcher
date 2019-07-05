@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 12:55:23 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/04 13:14:43 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/05 13:15:17 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,16 @@ public class Tower {
 	}
 
 	protected void changeConditions() {
-		int numberOfAircrats = 0;
-		while (numberOfAircrats < observers.size()) {
-			observers.get(numberOfAircrats).updateConditions();
-			numberOfAircrats++;
+		int numberOfAircrafts = observers.size();
+		int counter = 0;
+		while (counter < observers.size()) {
+			if (numberOfAircrafts == observers.size()) {
+				observers.get(counter).updateConditions();
+				if (numberOfAircrafts > observers.size()) {
+					numberOfAircrafts = observers.size();
+				} else
+					counter++;
+			}
 		}
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:04:07 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/04 13:23:19 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/05 17:22:30 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ public class WriteAndRead {
 						simulationRuns = Integer.parseInt(lineRead);
 						if (simulationRuns < 0) {
 							System.out.println("Error: First Line of scenario file must be a positive integer...");
+							return 0;
 						}
 					} catch (NumberFormatException numformatex) {
-						System.out.println("Error: First Line of the scenario file must be a single integer...");
+						System.out.println("Error: First Line of the scenario file must be a positive integer...");
+						buff.close();
+						return 0;					
 					}
 				} else {
 					splitParams = lineRead.split(" ");
@@ -59,16 +62,25 @@ public class WriteAndRead {
 							Integer.parseInt(splitParams[2]),
 							Integer.parseInt(splitParams[3]), 
 							Integer.parseInt(splitParams[4]));
-						if (flyable != null)
+						if (flyable != null) {
 							flyable.registerTower(tower);
+						} else {
+							System.out.println("Error: Unknown Aircraft type.");
+							buff.close();
+							return 0;
+						}
 					} else {
-						System.out.println("Error: Lines must have 5 paramters seperated by a single space...");
+						System.out.println("Error: Each Line after the first Line must have 5 paramters seperated by a single space...");
+						buff.close();
+						return 0;
 					}
 				}
 				lineNumber++;
 			}
 			buff.close();
-		} catch (IOException exception) {	
+		} catch (IOException | NumberFormatException exception) {
+			System.out.println("Error While parsing scenario file");
+			return 0;
 		}
 		return simulationRuns;
 	}

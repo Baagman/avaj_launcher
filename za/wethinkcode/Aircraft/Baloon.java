@@ -6,14 +6,13 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 12:49:49 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/04 14:16:08 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:16:59 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 package za.wethinkcode.Aircraft;
 
 import java.util.HashMap;
-
 import za.wethinkcode.Coordinates.Coordinates;
 import za.wethinkcode.Simulator.WriteAndRead;
 import za.wethinkcode.Tower.WeatherTower;
@@ -49,22 +48,29 @@ public class Baloon extends Aircraft implements Flyable {
 			case "SNOW":
 				getCoordinates().setHeight(getCoordinates().getHeight() - 15);
 				message.put(currentWeather, "It's snowing we're gonna crash");
+				break;
+			default:
+				System.out.println("Uhm we seem to be having some weather problem");
+				return ;
 			}
 
 			if (getCoordinates().getHeight() == 0) {
 				writeAndRead.WriteMessageToFile("Baloon#" + getName() + "(" + getId() + ") landing.");
+				writeAndRead.WriteMessageToFile("Tower says: Baloon#" + getName() + "(" + getId() + ") unregistered from weather tower.");
 				weatherTower.unregister(this);
-			} else if (message.get(currentWeather) != null) {
+			} else if ((message.get(currentWeather) != null) && (!message.get(currentWeather).isEmpty())) {
 				writeAndRead.WriteMessageToFile("Baloon#" + getName() + "(" + getId() + "): " + message.get(currentWeather));	
-			}
-				
+			}		
 		}
 		return ;
 	}
 
 	public void registerTower(WeatherTower weatherTower) {
-		this.weatherTower = weatherTower;
-		weatherTower.register(this);
-		writeAndRead.WriteMessageToFile("Tower says: Baloon#" + getName() + "(" + getId() + ") registered to weather tower.");
+		if (weatherTower != null) {
+			this.weatherTower = weatherTower;
+			this.weatherTower.register(this);
+			writeAndRead.WriteMessageToFile("Tower says: Baloon#" + getName() + "(" + getId() + ") registered to weather tower.");
+		}
+		return ;
 	}	
 }
