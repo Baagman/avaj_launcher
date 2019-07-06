@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:04:07 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/05 17:22:30 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/06 11:02:37 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,11 @@ public class WriteAndRead {
 				lineNumber++;
 			}
 			buff.close();
-		} catch (IOException | NumberFormatException exception) {
-			System.out.println("Error While parsing scenario file");
+		} catch (IOException exception) {
+			System.out.println("Error: Cannot read from scenario file.");
+			return 0;
+		} catch (NumberFormatException numberFormatException) {
+			System.out.println("Error: parameters 3 to 5 must be intergers.");
 			return 0;
 		}
 		return simulationRuns;
