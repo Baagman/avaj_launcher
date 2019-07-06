@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 12:17:55 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/05 14:28:22 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/06 11:22:19 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ public class Simulator {
 					System.out.println("Error: Cannot create output file..");
 				}
 			} else {
-				System.out.println("Error: Please specify scenario file.");
+				System.out.println("Error: Scenario file does not exist.");
 			}
+		} else {
+			System.out.println("Error: Please specify scenario file.");
 		}
 	}
 }
