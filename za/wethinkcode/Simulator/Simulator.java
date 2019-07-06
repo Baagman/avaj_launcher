@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 12:17:55 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/06 11:22:19 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/06 11:34:42 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ public class Simulator {
 			WriteAndRead writeAndRead = new WriteAndRead();
 			WeatherTower tower = new WeatherTower();
 			int simulationRuns;
+			File simulationFile = new File("simulation.txt");
 			if ((scenarioFile.exists()) && (!scenarioFile.isDirectory())) {
 				try {
-					File simulationFile = new File("simulation.txt");
 					bufferedWriter = new BufferedWriter(new FileWriter(simulationFile));
 					simulationRuns = writeAndRead.ReadScenarioFile(scenarioFile, new AircraftFactory(), tower);
 					if (simulationRuns > 0) {
@@ -38,12 +38,15 @@ public class Simulator {
 							simulationRuns--;
 						}
 						bufferedWriter.close();
-					}
+					} else
+						simulationFile.delete();
 				} catch (IOException e) {
 					System.out.println("Error: Cannot create output file..");
+					simulationFile.delete();
 				}
 			} else {
 				System.out.println("Error: Scenario file does not exist.");
+				simulationFile.delete();
 			}
 		} else {
 			System.out.println("Error: Please specify scenario file.");
