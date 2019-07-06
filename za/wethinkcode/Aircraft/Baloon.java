@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 12:49:49 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/05 15:16:59 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/06 12:10:34 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ public class Baloon extends Aircraft implements Flyable {
 			String currentWeather = weatherTower.getWeather(getCoordinates());
 			HashMap <String, String> message = new HashMap<String, String>();
 			
+			if (getCoordinates().getHeight() == 0) {
+				writeAndRead.WriteMessageToFile("Baloon#" + getName() + "(" + getId() + ") landing.");
+				writeAndRead.WriteMessageToFile("Tower says: Baloon#" + getName() + "(" + getId() + ") unregistered from weather tower.");
+				weatherTower.unregister(this);
+				return ;
+			}
+			
 			switch (currentWeather) {
 			case "SUN":
 				getCoordinates().setHeight(getCoordinates().getHeight() + 4);
@@ -53,12 +60,8 @@ public class Baloon extends Aircraft implements Flyable {
 				System.out.println("Uhm we seem to be having some weather problem");
 				return ;
 			}
-
-			if (getCoordinates().getHeight() == 0) {
-				writeAndRead.WriteMessageToFile("Baloon#" + getName() + "(" + getId() + ") landing.");
-				writeAndRead.WriteMessageToFile("Tower says: Baloon#" + getName() + "(" + getId() + ") unregistered from weather tower.");
-				weatherTower.unregister(this);
-			} else if ((message.get(currentWeather) != null) && (!message.get(currentWeather).isEmpty())) {
+			
+			if ((message.get(currentWeather) != null) && (!message.get(currentWeather).isEmpty())) {
 				writeAndRead.WriteMessageToFile("Baloon#" + getName() + "(" + getId() + "): " + message.get(currentWeather));	
 			}		
 		}

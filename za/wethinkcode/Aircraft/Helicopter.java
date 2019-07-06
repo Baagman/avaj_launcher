@@ -6,7 +6,7 @@
 /*   By: tbaagman <tbaagman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:27:44 by tbaagman          #+#    #+#             */
-/*   Updated: 2019/07/05 14:45:45 by tbaagman         ###   ########.fr       */
+/*   Updated: 2019/07/06 12:05:02 by tbaagman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ public class Helicopter extends Aircraft implements Flyable {
 		String currentWeather = weatherTower.getWeather(getCoordinates());
 		HashMap <String, String> message = new HashMap<String, String>();
 
+		if (getCoordinates().getHeight() == 0) {
+			writeAndRead.WriteMessageToFile("Helicopter#" + getName() + "(" + getId() + ") landing.");
+			writeAndRead.WriteMessageToFile("Tower says: Helicopter#" + getName() + "(" + getId() + ") unregistered from weather tower.");
+			this.weatherTower.unregister(this);
+			return ;
+		}
+		
 		switch (currentWeather) {
 			case "SUN":
 				getCoordinates().setHeight(getCoordinates().getHeight() + 2);
@@ -52,11 +59,8 @@ public class Helicopter extends Aircraft implements Flyable {
 				System.out.println("Uhm we seem to be having some weather problem");
 				return ;
 		}
-		if (getCoordinates().getHeight() == 0) {
-			writeAndRead.WriteMessageToFile("Helicopter#" + getName() + "(" + getId() + ") landing.");
-			writeAndRead.WriteMessageToFile("Tower says: Helicopter#" + getName() + "(" + getId() + ") unregistered from weather tower.");
-			this.weatherTower.unregister(this);
-		} else if ((message.get(currentWeather) != null) && (!message.get(currentWeather).isEmpty())) {
+
+		if ((message.get(currentWeather) != null) && (!message.get(currentWeather).isEmpty())) {
 			writeAndRead.WriteMessageToFile("Helicopter#" + getName() + "(" + getId() + "): " + message.get(currentWeather));
 		}
 		return ;
