@@ -37,11 +37,11 @@ public class Coordinates {
 
 	public	void setHeight(int height) {
 		if (height <= 0)
-			this.height = 0;
+			height = 0;
 		else if (height >= 100) {
 			height = 100;
-			this.height = height;
 		}
+		this.height = height;
 	}
 
 	public	void setLatitude(int latitude) {
